@@ -1,78 +1,54 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.book-container {
+    perspective: 2000px;
+    padding: 50px;
 }
 
-body {
-    background: #f0f0f0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Georgia', serif;
-}
-
-.container {
-    perspective: 1500px;
-}
-
-.flipbook {
-    display: flex;
-    transform-style: preserve-3d;
+.book {
     position: relative;
+    transform-style: preserve-3d;
+    width: 400px;
+    height: 600px;
 }
 
 .page {
-    width: 400px;
-    height: 600px;
-    background: #fff;
-    border: 1px solid #ddd;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    transition: transform 1s ease-in-out;
+    background: #fffaf0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     padding: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    position: relative;
-    background: #fff9eb;
+    border: 1px solid #e0d0c0;
 }
 
-.cover {
-    background: #2c1810 !important;
+.front-cover {
+    background: #3d2b1f !important;
     color: #fff;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
-}
-
-.cover h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.subtitle {
-    font-style: italic;
-    opacity: 0.8;
+    justify-content: center;
 }
 
 .back-cover {
-    background: #2c1810 !important;
-}
-
-.content {
-    line-height: 1.6;
-    font-size: 16px;
-    color: #3d3d3d;
-}
-
-.date {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    color: #5a4a42;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    background: #3d2b1f !important;
 }
 
 .page:nth-child(even) {
-    background: #f5f0e6;
+    background: #f8f2e6;
+}
+
+.page-content {
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    color: #4a4035;
+}
+
+h2 {
+    border-bottom: 1px solid #d4c4b5;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #2d2018;
 }
