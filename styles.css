@@ -1,54 +1,301 @@
-.book-container {
-    perspective: 2000px;
-    padding: 50px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.book {
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5f1e8;
+    color: #333;
+    line-height: 1.6;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7-7 3.134-7 7-7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d8cdb1' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #553c26;
+    font-weight: normal;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(85, 60, 38, 0.2);
+}
+
+.flip-book-container {
+    margin: 40px auto;
+    perspective: 1500px;
     position: relative;
-    transform-style: preserve-3d;
-    width: 400px;
-    height: 600px;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
 }
 
-.page {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    transform-origin: left center;
-    transition: transform 1s ease-in-out;
-    background: #fffaf0;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    padding: 40px;
-    border: 1px solid #e0d0c0;
+#flipbook {
+    width: 800px;
+    height: 540px;
+    margin: 0 auto;
+    position: relative;
+    transition: transform 0.5s;
 }
 
-.front-cover {
-    background: #3d2b1f !important;
+/* Page styling */
+#flipbook .page {
+    background-color: #fffcf7;
+    background-image: 
+        linear-gradient(90deg, rgba(211, 204, 188, 0.2) 0%, rgba(211, 204, 188, 0) 5%),
+        repeating-linear-gradient(#fffcf7, #fffcf7 27px, #dbd6ca 28px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#flipbook .hard {
+    background-color: #5c4738;
     color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cover styling */
+#flipbook .cover {
+    background-color: #704c32;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7-7 3.134-7 7-7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5f1e8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #553c26;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.flip-book-container {
+    margin: 40px auto;
+    perspective: 1500px;
+}
+
+#flipbook {
+    width: 800px;
+    height: 540px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#flipbook .page {
+    background-color: #fffcf7;
+    background-image: 
+        linear-gradient(90deg, rgba(211, 204, 188, 0.2) 0%, rgba(211, 204, 188, 0) 5%),
+        repeating-linear-gradient(#fffcf7, #fffcf7 27px, #dbd6ca 28px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#flipbook .hard {
+    background-color: #5c4738;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+#flipbook .cover {
+    background-color: #704c32;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7-7 3.134-7 7-7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2386592d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    border: 5px solid #5c4738;
+}
+
+#flipbook .cover-back {
+    background-color: #704c32;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7-7 3.134-7 7-7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2386592d' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    border: 5px solid #5c4738;
+}
+
+.cover-content {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
 }
 
-.back-cover {
-    background: #3d2b1f !important;
+.cover-content h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
 }
 
-.page:nth-child(even) {
-    background: #f8f2e6;
+.cover-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.cover-content .year {
+    font-size: 1.2rem;
+    margin-top: 50px;
+    font-style: italic;
+}
+
+.inside-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 40px;
+    background-color: #5c4738;
+    color: #e8dfd1;
+}
+
+.inside-cover .quote {
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.inside-cover .author {
+    font-size: 1rem;
+    align-self: flex-end;
+}
+
+.inside-cover .closing-thought {
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.back-cover-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-style: italic;
+    font-size: 1.2rem;
 }
 
 .page-content {
-    font-family: 'Georgia', serif;
-    line-height: 1.8;
-    color: #4a4035;
+    padding: 30px;
+    height: 100%;
+    overflow: hidden;
 }
 
-h2 {
-    border-bottom: 1px solid #d4c4b5;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    color: #2d2018;
+.page-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: right;
+    color: #553c26;
+    font-style: italic;
+    border-bottom: 1px solid #d3ccbc;
+    padding-bottom: 5px;
+}
+
+.page-content p {
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #5c4738;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px;
+    font-family: 'Georgia', serif;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #704c32;
+}
+
+@media (max-width: 900px) {
+    #flipbook {
+        width: 600px;
+        height: 420px;
+    }
+}
+
+@media (max-width: 700px) {
+    #flipbook {
+        width: 400px;
+        height: 300px;
+    }
+    
+    .cover-content h2 {
+        font-size: 2rem;
+    }
+    
+    .cover-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .page-content {
+        padding: 20px;
+    }
+    
+    .page-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .page-content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 500px) {
+    #flipbook {
+        width: 300px;
+        height: 240px;
+    }
+    
+    .cover-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .cover-content h3 {
+        font-size: 1rem;
+    }
+    
+    .page-content {
+        padding: 15px;
+    }
+    
+    .page-content h3 {
+        font-size: 1rem;
+    }
+    
+    .page-content p {
+        font-size: 0.8rem;
+    }
 }
