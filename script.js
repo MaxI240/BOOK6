@@ -1,22 +1,25 @@
-let currentPage = 0;
-const pages = document.querySelectorAll('.page');
+document.addEventListener('DOMContentLoaded', function() {
+    const flipbook = document.querySelector('.flipbook');
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
 
-function flipPage(element, pageNumber) {
-    if (pageNumber === currentPage + 1) {
-        element.style.transform = 'rotateY(-180deg)';
-        element.style.zIndex = 100 - pageNumber;
-        currentPage++;
-    } else if (pageNumber === currentPage - 1) {
-        element.style.transform = 'rotateY(0deg)';
-        element.style.zIndex = 100 + pageNumber;
-        currentPage--;
-    }
-}
+    pages.forEach((page, index) => {
+        page.style.zIndex = pages.length - index;
+        page.style.transformOrigin = 'left center';
+    });
 
-// Initialize pages
-pages.forEach((page, index) => {
-    page.style.zIndex = 100 - index;
-    if (index > 0) {
-        page.style.transform = 'rotateY(-180deg)';
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' && currentPage < pages.length - 1) {
+            flipPage('next');
+            currentPage++;
+        } else if (e.key === 'ArrowLeft' && currentPage > 0) {
+            flipPage('prev');
+            currentPage--;
+        }
+    });
+
+    function flipPage(direction) {
+        const angle = direction === 'next' ? -180 : 0;
+        pages[currentPage].style.transform = `rotateY(${angle}deg)`;
     }
 });
