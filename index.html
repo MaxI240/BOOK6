@@ -2,33 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Diary Flipbook</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Diary</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/2.0.3/jquery.mobile-events.min.js"></script>
 </head>
 <body>
-    <div class="book-container">
-        <div class="book">
-            <div class="page front-cover">
-                <div class="cover-content">
-                    <h1>My Private Journal</h1>
-                    <p class="subtitle">Vol. I</p>
+    <div class="container">
+        <h1>My Personal Diary</h1>
+        <div class="flip-book-container">
+            <div class="flip-book" id="flipbook">
+                <!-- Cover -->
+                <div class="hard cover">
+                    <div class="cover-content">
+                        <h2>Personal Diary</h2>
+                        <h3>Thoughts & Memories</h3>
+                        <p class="year">2025</p>
+                    </div>
+                </div>
+                
+                <!-- Inside Cover -->
+                <div class="hard">
+                    <div class="inside-cover">
+                        <p class="quote">"We write to taste life twice, in the moment and in retrospect."</p>
+                        <p class="author">- Anaïs Nin</p>
+                    </div>
+                </div>
+                
+                <!-- Page 1 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>January 15, 2025</h3>
+                        <p>Dear Diary,</p>
+                        <p>Today marks the beginning of a new journey. The morning sky was painted in hues of pink and orange as I sat by my window, contemplating the year ahead. There's something magical about new beginnings, isn't there?</p>
+                        <p>I've decided to document my thoughts, experiences, and growth in these pages. Perhaps years from now, I'll look back and recognize how far I've come.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 2 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>January 20, 2025</h3>
+                        <p>The rain hasn't stopped for three days now. The continuous patter against my window has become a soothing soundtrack to my thoughts. I've been reading "The Shadow of the Wind" and find myself lost in the labyrinth of forgotten books.</p>
+                        <p>There's something profound about getting lost in someone else's story while crafting your own. The characters feel like old friends, their struggles and triumphs reflecting aspects of my own life.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 3 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>February 3, 2025</h3>
+                        <p>I took a long walk through the park today. The trees are still bare, but there's a promise of spring in the air. I noticed tiny buds forming on some branches – a reminder that nature always finds its way back to life.</p>
+                        <p>Met an elderly gentleman who was feeding the birds. We exchanged smiles, and in that brief moment, I felt a connection to something larger than myself. It's the small moments that often leave the deepest impressions.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 4 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>February 17, 2025</h3>
+                        <p>Started a new painting today. The canvas was intimidatingly blank at first, but as I began to apply colors, a landscape started to emerge. It's far from perfect, but there's honesty in the imperfections.</p>
+                        <p>I'm learning that creation is as much about letting go as it is about control. The best parts of my work often come from happy accidents and unexpected turns.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 5 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>March 5, 2025</h3>
+                        <p>Received a letter from an old friend today. In this digital age, there's something deeply personal about handwritten words on paper. The familiar handwriting brought back a flood of memories.</p>
+                        <p>It's strange how people can drift apart and then reconnect as if no time has passed. Our paths have diverged in many ways, yet there remains a thread of connection that time hasn't severed.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 6 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>March 22, 2025</h3>
+                        <p>The cherry blossoms have begun to bloom. I stood under a canopy of pale pink flowers today, watching as petals drifted down like snow. There's a Japanese term, "mono no aware," that captures the poignant awareness of impermanence.</p>
+                        <p>These blossoms will only last a week or two, and perhaps that's what makes them so precious. Their ephemeral beauty reminds us to appreciate what's before us now, knowing it won't last forever.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 7 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>April 8, 2025</h3>
+                        <p>I found myself dreaming of distant places today. There's a particular beach I visited years ago – the way the sunlight danced on the water, the feel of sand between my toes, the salt-laden breeze. Memory is a curious thing, how it preserves certain moments with such vivid clarity.</p>
+                        <p>Perhaps I'll travel there again someday. For now, I'm content to journey through recollection, visiting places that exist now only in mind and memory.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 8 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>April 17, 2025</h3>
+                        <p>I started reading poetry again. There's something about the concentrated essence of language in poems that speaks directly to the soul. Today I rediscovered Mary Oliver's "Wild Geese" and was moved to tears by its simple truth.</p>
+                        <p>"You do not have to be good. You do not have to walk on your knees for a hundred miles through the desert repenting. You only have to let the soft animal of your body love what it loves."</p>
+                        <p>What freedom there is in those words.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 9 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>May 2, 2025</h3>
+                        <p>The garden is coming alive. I planted tomatoes, basil, and wildflowers last weekend, and already tiny green shoots are pushing through the soil. There's something deeply satisfying about nurturing growth, about participating in this ancient cycle.</p>
+                        <p>I wonder sometimes if writing is a similar form of cultivation—planting ideas and memories, tending to them with care, watching as they take root and flourish in unexpected ways.</p>
+                    </div>
+                </div>
+                
+                <!-- Page 10 -->
+                <div class="page">
+                    <div class="page-content">
+                        <h3>May 15, 2025</h3>
+                        <p>I heard from my sister today after weeks of silence. She's always been the adventurous one, currently working on a conservation project in Costa Rica. Her stories of the rainforest made me feel both connected to her life and aware of how different our paths have been.</p>
+                        <p>Despite the distance between us—both geographical and sometimes emotional—there remains an unbreakable bond, a shared history that no amount of time or space can diminish.</p>
+                    </div>
+                </div>
+                
+                <!-- Back Inside Cover -->
+                <div class="hard">
+                    <div class="inside-cover">
+                        <p class="closing-thought">Life isn't about finding yourself. Life is about creating yourself.</p>
+                    </div>
+                </div>
+                
+                <!-- Back Cover -->
+                <div class="hard cover-back">
+                    <div class="back-cover-content">
+                        <p>End of Entries</p>
+                    </div>
                 </div>
             </div>
-            <div class="page">
-                <div class="page-content">
-                    <h2>March 15, 2023</h2>
-                    <p>The crisp morning air carried whispers of change...</p>
-                </div>
-            </div>
-            <div class="page">
-                <div class="page-content">
-                    <h2>March 17, 2023</h2>
-                    <p>Rain tapped persistently against my window...</p>
-                </div>
-            </div>
-            <div class="page back-cover"></div>
+        </div>
+        <div class="controls">
+            <button id="prev" class="btn">Previous</button>
+            <button id="next" class="btn">Next</button>
         </div>
     </div>
-    <script src="script.js"></script>
+    
+    <script src="./js/script.js"></script>
 </body>
 </html>
