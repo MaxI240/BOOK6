@@ -2,30 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Flip Animation</title>
+    <title>My Diary</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="book">
-        <div class="page cover" onclick="flipPage(this, 1)">
-            <h1>My Story</h1>
-        </div>
-        
-        <div class="page" onclick="flipPage(this, 2)">
-            <p>Once upon a time...</p>
-        </div>
-
-        <div class="page" onclick="flipPage(this, 3)">
-            <p>Chapter 1 content...</p>
-        </div>
-
-        <div class="page" onclick="flipPage(this, 4)">
-            <img src="https://media.tenor.com/zGm5acSjHCIAAAAM/cat-begging.gif" 
-                 alt="Cute Cat"
-                 class="gif">
-            <button onclick="alert('❤️ Thank You!')">Click Me</button>
+    <div class="container">
+        <div class="flipbook">
+            <div class="page cover">
+                <h1>My Private Journal</h1>
+                <p class="subtitle">Vol. I</p>
+            </div>
+            <div class="page">
+                <div class="content">
+                    <h2 class="date">March 15, 2023</h2>
+                    <p>The crisp morning air carried whispers of change as I walked through the empty streets...</p>
+                </div>
+            </div>
+            <div class="page">
+                <div class="content">
+                    <h2 class="date">March 17, 2023</h2>
+                    <p>Rain tapped persistently against my window today, a rhythmic companion to my thoughts...</p>
+                </div>
+            </div>
+            <div class="page">
+                <div class="content">
+                    <h2 class="date">March 20, 2023</h2>
+                    <p>Met an old friend in the most unexpected place - a dusty bookstore downtown...</p>
+                </div>
+            </div>
+            <div class="page cover back-cover"></div>
         </div>
     </div>
 
